@@ -7,8 +7,6 @@ n = int(input())
 for i in range(1,10):
     print(n,'*', i, '=', n*i)
 
-
-
 #  리스트 컴프리헨션 사용
 n = int(input())
 table = [f"{n} * {i} = {n*i}" for i in range(1, 10)]
