@@ -23,7 +23,7 @@ for _ in range(m):
     print(pfs[b]-pfs[a-1])
 
 
-# 방법 2. 누적합을 미리 구하기
+# 방법 2. 누적합을 미리 구하기 - 시간초과..
 n, m = map(int, input().split())
 numbers = list(map(int, input().split()))
 sum = [0]
