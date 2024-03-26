@@ -14,6 +14,7 @@
 # 둘째 줄에 폭발 문자열이 주어진다. 길이는 1보다 크거나 같고, 36보다 작거나 같다.
 # 두 문자열은 모두 알파벳 소문자와 대문자, 숫자 0, 1, ..., 9로만 이루어져 있다.
 
+# 방법1
 import sys
 x = list(sys.stdin.readline().strip())
 M = list(sys.stdin.readline().strip())
@@ -21,6 +22,7 @@ m = len(M)
 stack = []
 for i in x:
     stack.append(i)
+    # 스택의 끝부터 폭발 문자열의 길이만큼을 비교하여 제거
     if stack[len(stack)-m:len(stack)] == M: #스택의 끝부터 M의 글자열 크기까지 자른게 M과 같다면
         for _ in range(m): # m의 길이만큼
             stack.pop() # stack에서 꺼내준다!
@@ -30,3 +32,28 @@ else:
     print("FRULA")
 
 
+# 방법2
+def main():
+    string = input()  # 전체 문자열
+    bomb = input()  # 폭발 문자열
+
+    lastChar = bomb[-1]  # 폭발 문자열의 마지막 글자
+    stack = []
+    length = len(bomb)  # 폭발 문자열의 길이
+
+    # 문자열을 한 글자씩 처리하면서 폭발 문자열 제거
+    for char in string:
+        stack.append(char)
+        # 스택의 끝 부분에서 폭발 문자열 확인하여 제거
+        if char == lastChar and ''.join(stack[-length:]) == bomb:
+            del stack[-length:]
+
+    answer = ''.join(stack)
+    if answer == '':
+        print("FRULA")
+    else:
+        print(answer)
+
+
+if __name__ == '__main__':
+    main()
