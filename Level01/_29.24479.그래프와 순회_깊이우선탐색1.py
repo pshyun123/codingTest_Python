@@ -59,3 +59,60 @@ def DFS(start):
 result = DFS(R)
 print(*result[1:], sep="\n")  # 첫 번째 노드는 제외하고 출력
 
+
+# 방법2. 재귀
+
+import sys
+
+# 빠른 입력을 위해 sys.stdin.readline 사용
+input = sys.stdin.readline
+
+# 재귀 제한 해제
+sys.setrecursionlimit(10 ** 9)
+
+# 정점의 개수(N), 간선의 개수(M), 시작 노드(R) 입력
+N, M, R = map(int, input().split())
+
+# 그래프 구성을 위한 인접 리스트 생성
+graph = [[] for _ in range(N + 1)]
+
+# 간선 정보 입력 및 인접 리스트 구성
+for _ in range(M):
+    a, b = map(int, input().split())
+    graph[a].append(b)
+    graph[b].append(a)
+
+# 각 정점에 대해 오름차순으로 인접 노드를 정렬
+for i in range(1, len(graph)):
+    graph[i].sort()
+
+# DFS 함수 정의
+def DFS(start):
+    visited = [-1] * (N + 1)  # 방문 여부를 기록하는 배열
+    path = []  # 방문 경로를 기록하는 배열
+
+    # 재귀를 통한 DFS 탐색
+    def recursive_DFS(node):
+        visited[node] = 1  # 방문 표시
+        path.append(node)  # 방문 경로에 추가
+
+        # 인접 노드에 대해 재귀적으로 탐색
+        for adj_node in graph[node]:
+            if visited[adj_node] == -1:  # 방문하지 않은 노드인 경우에만 재귀 호출
+                recursive_DFS(adj_node)
+
+    # 시작 노드부터 DFS 호출
+    recursive_DFS(start)
+
+    return path  # 방문 경로 반환
+
+# DFS 수행 결과 처리
+path = DFS(R)
+result = [0] * (N + 1)
+
+# 방문 순서를 결과에 기록
+for idx, node in zip(range(1, len(path) + 1), path):
+    result[node] = idx
+
+# 결과 출력
+print(*result[1:], sep="\n")  # 첫 번째 노드는 제외하고 출력
