@@ -6,3 +6,4 @@ print(int(A)/int(B))
 # map 사용
 A,B = map(int,input().split())
 print(A/B)
+
