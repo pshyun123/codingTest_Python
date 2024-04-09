@@ -21,3 +21,11 @@ for i in range(3, 0, -1):
 print(A * int(B))
 
 
+# 산술연산자
+A = int(input())
+B = int(input())
+
+print(A * (B % 10))
+print(A * (B % 100 // 10))
+print(A * (B // 100))
+print(A * B)
