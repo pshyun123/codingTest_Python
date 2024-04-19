@@ -9,9 +9,10 @@
 # N바이트 정수까지 저장할 수 있다고 생각해서 칠판에 쓴 정수 자료형의 이름은 무엇일까?
 
 # 방법1
-for i in range(int(input())//4):
-    print('long', end="")
+for _ in range(int(input())//4):
+    print('long', end=" ")
 print('int')
+
 
 # 방법2
 n = int(input())
@@ -19,3 +20,7 @@ answer = 'int'
 for i in range(n//4):
     answer = 'long ' + answer
 print(answer)
+
+
+# 방법3
+print(int(input())//4*'long ' + 'int')
