@@ -14,3 +14,11 @@ T = int(input())
 for t in range(T):
     A,B = map(int, input().split())
     print(A+B)
+
+# 방법3
+T = int(input())
+t = 0
+while T > t:
+    t += 1
+    A,B = map(int, input().split())
+    print(A+B)
